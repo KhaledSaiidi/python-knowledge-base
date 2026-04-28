@@ -51,3 +51,6 @@ name = input("Enter name: ")
 number = int(input("Enter number: "))
 print(name)
 print(number)
+
+name = "khaled"
+print(dir(name))

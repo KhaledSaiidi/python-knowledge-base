@@ -13,7 +13,10 @@ student1 = Student("Harry", 85)
 did_pass = student1.check_pass_fail()
 print(student1.name, student1.marks, did_pass)
 
-class Complex:
+class MyNumbers:
+    def check_number(self):
+        print("I am a number")
+class Complex(MyNumbers):
     def __init__(self, real, imag):
         self.real = real
         self.imag = imag
@@ -26,4 +29,6 @@ class Complex:
 n1 = Complex(5, 6j)
 n2 = Complex(-4, 2j)
 result = n1.add(n2)
-print(result.real, result.imag)
+check = n1.check_number()
+print(result.real, result.imag, check)
+print(dir(n1))

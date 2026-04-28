@@ -1,4 +1,4 @@
-# List
+# -------------------------------- List
 # Use when you need an ordered, mutable collection that allows duplicates
 # Common ops: append(), extend(), insert(), remove(), pop(), sort(), reverse(), copy(), indexing []
 
@@ -35,7 +35,7 @@ first = fruits[0]
 
 
 
-# Tuple
+# -------------------------------- Tuple
 # Use when you need an ordered, immutable collection (fixed data, safer for constants)
 # Common ops: indexing [], count(), index(), unpacking (x, y = coordinates)
 
@@ -58,7 +58,7 @@ coordinates_copy = tuple(coordinates)
 
 
 
-# Set
+# -------------------------------- Set
 # Use when you need unique elements and fast membership checks (no duplicates, unordered)
 # Common ops: add(), remove(), discard(), union(|), intersection(&), difference(-), copy(), in
 
@@ -92,7 +92,7 @@ exists = 3 in unique_numbers
 
 
 
-# Dictionary (dict)
+# -------------------------------- Dictionary (dict)
 # Use when you need key-value mapping for structured data and fast lookups by key
 # Common ops: get(), keys(), values(), items(), update(), pop(), copy(), access via user["key"]
 
