@@ -1,3 +1,7 @@
+list[int]
+dict[str, int]
+set[str]
+tuple[int, int]
 # -------------------------------- List
 # Use when you need an ordered, mutable collection that allows duplicates
 # Common ops: append(), extend(), insert(), remove(), pop(), sort(), reverse(), copy(), indexing []
@@ -11,6 +15,9 @@ fruits.append('apple')
 # adds 'apple' to the end → ['banana', 'orange', 'mango', 'apple']
 
 fruits.extend(['kiwi', 'grape'])
+fruits2 = ['kiwi', 'grape']
+fruits += fruits2
+
 # adds multiple items → ['banana', 'orange', 'mango', 'apple', 'kiwi', 'grape']
 
 fruits.insert(1, 'pear')
@@ -21,11 +28,11 @@ del fruits[0]
 # removes first occurrence → ['banana', 'pear', 'mango', 'apple', 'kiwi', 'grape']
 
 last = fruits.pop()
-# removes and returns last item → last='grape', list updated
+# removes the last item but removes it in the string provided variable → last='grape', list updated
 
 fruits.sort()
-fruits.sort(reverse=True)
 # sorts alphabetically → ['apple', 'banana', 'kiwi', 'mango', 'pear']
+fruits.sort(reverse=True)
 
 fruits.reverse()
 # reverses order → ['pear', 'mango', 'kiwi', 'banana', 'apple']
