@@ -1,0 +1,5 @@
+Python is awesome
+I love Python
+But Go is better
+Go is way better
+Go is more robust
