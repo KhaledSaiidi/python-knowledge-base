@@ -208,12 +208,11 @@ Returns the number of tasks with status `"pending"`.
 Use this to validate your solution manually.
 
 ```python
-if __name__ == "__main__":
     queue = AnnotationTaskQueue()
 
-    queue.add_task("task-1", priority=5, submitted_at=10)
-    queue.add_task("task-2", priority=10, submitted_at=20)
-    queue.add_task("task-3", priority=10, submitted_at=15)
+    queue.add_task("task-1", priority=5, status="pending", payload={"type": "image", "label": "cat"}, submitted_at=datetime(2026, 5, 6, 10, 0, 0))
+    queue.add_task("task-2", priority=10,status="pending", payload={"type": "image", "label": "cat"}, submitted_at=datetime(2026, 5, 6, 10, 0, 0))
+    queue.add_task("task-3", priority=10,status="pending", payload={"type": "image", "label": "cat"}, submitted_at=datetime(2026, 6, 6, 10, 0, 0))
 
     print(queue.get_next_task())
     # expected: task-3
