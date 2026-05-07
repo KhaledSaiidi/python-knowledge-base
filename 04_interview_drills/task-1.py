@@ -33,7 +33,7 @@ def getBestTask(tasks: list[Task]) -> Task | None:
         elif task.priority == bestTask.priority:
             if task.submitted_at > bestTask.submitted_at:
                 bestTask = task
-            elif task.task_id == bestTask.task_id:
+            elif task.task_id >= bestTask.task_id:
                 bestTask = task
     return bestTask
 
