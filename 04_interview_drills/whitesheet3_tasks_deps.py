@@ -24,14 +24,19 @@ class TaskQueue:
     pending_queue: list = field(default_factory=list)
     completed_tasks: set = field(default_factory=set)
 
-    def add_task(self, task: Task) -> None:
+    def add_task(self, task: Task) -> bool:
+        if task.task_id in self.tasks_by_id:
+            return False
+        
         for dependency_id in task.dependencies:
             if dependency_id not in self.tasks_by_id:
-                return None
+                return False
+            
         self.tasks_by_id[task.task_id] = task
         heapq.heappush(self.pending_queue, (-task.priority, task.created_at, task.task_id))
+        return True
 
-    def is_ready(self, task: Task) -> bool | None:
+    def is_ready(self, task: Task) -> bool:
         if not task.dependencies:
             return True
         for task_id in task.dependencies:
@@ -58,7 +63,7 @@ class TaskQueue:
             heapq.heappush(self.pending_queue, blocked_task)
         return None
         
-    def complete_Task(self, task_id: str) -> bool:
+    def complete_task(self, task_id: str) -> bool:
         if task_id not in self.tasks_by_id:
             return False
         task = self.tasks_by_id[task_id]
@@ -91,7 +96,7 @@ if __name__ == "__main__":
     print("Next task:", task.task_id)
     print("Expected: task-2")
 
-    queue.complete_Task(task.task_id)
+    queue.complete_task(task.task_id)
 
     # 4. Should return task-1 next
     # task-3 is still blocked because task-1 is not completed yet
@@ -99,14 +104,14 @@ if __name__ == "__main__":
     print("Next task:", task.task_id)
     print("Expected: task-1")
 
-    queue.complete_Task(task.task_id)
+    queue.complete_task(task.task_id)
 
     # 5. Now task-3 dependency is completed, so it should be returned
     task = queue.get_next_task()
     print("Next task:", task.task_id)
     print("Expected: task-3")
 
-    queue.complete_Task(task.task_id)
+    queue.complete_task(task.task_id)
 
     # 6. No more tasks
     task = queue.get_next_task()
