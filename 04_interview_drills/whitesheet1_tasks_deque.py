@@ -12,7 +12,7 @@ class TaskStatus(Enum):
 class Task:
     task_id: str
     title: str
-    created_at: datetime = datetime.now()
+    created_at: datetime = field(default_factory=datetime.now)
     status: TaskStatus = TaskStatus.PENDING
 
 @dataclass
