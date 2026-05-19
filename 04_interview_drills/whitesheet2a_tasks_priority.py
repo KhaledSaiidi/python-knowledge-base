@@ -10,6 +10,7 @@ class TaskStatus(Enum):
 
 @dataclass(order=True)
 class Task:
+    sort_priority: int = field(init=False, repr=False)
     task_id: str = field(compare=False)
     title: str = field(compare=False)
     priority: int = field(compare=False)
@@ -23,9 +24,13 @@ class TaskQueue:
     pending_queue: list[Task] = field(default_factory=list)
     completed_tasks: set = field(default_factory=set)
 
-    def add_task(self, task: Task) -> None:
+    def add_task(self, task: Task) -> bool:
+        if task.task_id in self.tasks_by_id:
+            return False
         self.tasks_by_id[task.task_id] = task
         heapq.heappush(self.pending_queue,task)
+        return True
+
     def get_next_task(self) -> Task | None:
         while self.pending_queue:
             task = heapq.heappop(self.pending_queue)
@@ -36,7 +41,7 @@ class TaskQueue:
                 return task
         return None
         
-    def complete_Task(self, task_id: str) -> bool:
+    def complete_task(self, task_id: str) -> bool:
         if task_id not in self.tasks_by_id:
             return False
         task = self.tasks_by_id[task_id]
@@ -58,7 +63,7 @@ if __name__ == "__main__":
     print("Next task:", task.task_id)
     print("Status after get:", task.status)
 
-    result = queue.complete_Task(task.task_id)
+    result = queue.complete_task(task.task_id)
     print("Completed successfully:", result)
     print("Status after complete:", queue.tasks_by_id[task.task_id].status)
 
@@ -66,5 +71,5 @@ if __name__ == "__main__":
     print("Next task:", task.task_id)
     print("Status after get:", task.status)
 
-    result = queue.complete_Task("task-999")
+    result = queue.complete_task("task-999")
     print("Complete invalid task:", result)
