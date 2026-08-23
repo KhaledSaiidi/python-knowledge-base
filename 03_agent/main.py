@@ -24,11 +24,24 @@ async def main() -> None:
         tools=tools,
     )
 
-    response = await agent.run(
-        "Read main.py and tell me what it does."
-    )
+    print("Agent started. Type 'exit' or 'quit' to stop.")
 
-    print(response)
+    while True:
+        message = input("\nYou: ").strip()
+
+        if not message:
+            continue
+
+        if message.lower() in {"exit", "quit"}:
+            print("Goodbye.")
+            break
+
+        try:
+            response = await agent.run(message)
+            print(f"\nAssistant: {response}")
+
+        except Exception as exc:
+            print(f"\nError: {exc}")
 
 
 if __name__ == "__main__":
