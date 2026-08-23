@@ -1,0 +1,21 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "Read",
+      "description": "Read the exact contents of a file at the given path in the current project. Use this whenever you need to see what a file currently contains before answering a question about it or editing it.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "file_path": {
+            "type": "string",
+            "description": "Path to the file to read, relative to the current working directory (e.g. \"notes.txt\" or \"src/index.ts\")."
+          }
+        },
+        "required": [
+          "file_path"
+        ]
+      }
+    }
+  }
+]
